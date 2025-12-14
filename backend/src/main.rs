@@ -25,7 +25,7 @@ let key =std::env::var("api").expect("error with api key");
 
 #[tokio::main]
 async fn main() {
-    //read .env file
+    //read .env file n
     dotenv().ok();
     let api =env::var("api").unwrap();
 
