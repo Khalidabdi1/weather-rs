@@ -19,7 +19,10 @@ struct Res{
 
 async fn get_weather(Query(parms):Query<HashMap<String,String>>)->Json<serde_json::Value>{
 
+
+    
 let city=parms.get("city").unwrap_or(&"Riyadh".to_string()).to_string();
+
 let key =std::env::var("api").expect("error with api key");
 }
 
