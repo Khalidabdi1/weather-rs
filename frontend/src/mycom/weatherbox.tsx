@@ -12,37 +12,56 @@ import { SearchIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ButtonGroup } from "@/components/ui/button-group"
 import { Input } from "@/components/ui/input"
-import {Cloud} from "lucide-react"
-export default function Weatherbox(){
+import { Cloud } from "lucide-react"
+import {  useState } from "react"
 
-  
-    return(
-<Card className="w-120 h-100 flex justify-between  box-border">
-  <CardHeader>
-    <CardTitle>Weather </CardTitle>
-    <CardDescription>City weather details</CardDescription>
-    <CardAction>
-    <Cloud/>
-    </CardAction>
-  </CardHeader>
 
-  <CardContent className="w-full h-full">
-    <p>Card Content</p>
-  </CardContent>
+export default function Weatherbox() {
+  const [city, SetCity] = useState<string>("Riyadh")
 
-  <CardFooter>
-     <ButtonGroup className=" w-full">
-      <Input placeholder="Search City ..." onKeyDown={(e)=>{
-        if(e.key==="Enter"){
-          console.log("yes")
-        }
-      }} />
-      <Button variant="outline" aria-label="Search">
-        <SearchIcon />
-      </Button>
-    </ButtonGroup>
-  </CardFooter>
+  async function backend() {
 
-</Card>
-    )
+    const res = await fetch(`http://localhost:3000/weather?city=${city}`);
+    const data = await res.json()
+    console.log(data)
+  }
+
+
+
+
+  return (
+    <Card className="w-120 h-100 flex justify-between  box-border">
+      <CardHeader>
+        <CardTitle>Weather </CardTitle>
+        <CardDescription>City weather details</CardDescription>
+        <CardAction>
+          <Cloud />
+        </CardAction>
+      </CardHeader>
+
+      <CardContent className="w-full h-full">
+        <p>Card Content</p>
+      </CardContent>
+
+      <CardFooter>
+        <ButtonGroup className=" w-full">
+          <Input placeholder="Search City ..." onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              console.log(e.key)
+             backend()
+            }
+          }}
+            onChange={((e) => {
+              SetCity(e.target.value)
+              
+            })}
+          />
+          <Button variant="outline" aria-label="Search">
+            <SearchIcon />
+          </Button>
+        </ButtonGroup>
+      </CardFooter>
+
+    </Card>
+  )
 }
