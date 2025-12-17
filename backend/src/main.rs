@@ -5,7 +5,7 @@ use axum::{
 use dotenvy::dotenv;
 // use serde_json::json;
 // todo:fix error
-use tower_https::cors::{CorsLayer,Any};
+use tower_http::cors::{CorsLayer,Any};
 
 
 use std::collections::HashMap;
@@ -24,7 +24,7 @@ let city=parms.get("city").unwrap_or(&"Riyadh".to_string()).to_string();
 
 let key =std::env::var("api").expect("error with api key");
 
-let url =format!("https://api.openweathermap.org/data/2.5/weather?q={}&appid={}",city,key);
+let url =format!("https://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=metric",city,key);
 // let jsons =reqwest::get(url)
 // .await.
 // unwrap()
@@ -82,7 +82,7 @@ async fn main() {
 
     let app =Router::new()
     .route("/weather", get(get_weather))
-    .layer(CorsLayer)
+    .layer(CorsLayer::new().allow_origin(Any).allow_methods(Any))
     ;
 
 
