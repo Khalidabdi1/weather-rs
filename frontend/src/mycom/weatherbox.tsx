@@ -12,8 +12,8 @@ import {
   ItemActions,
   ItemContent,
   ItemDescription,
-  ItemFooter,
-  ItemHeader,
+  // ItemFooter,
+  // ItemHeader,
   ItemMedia,
   ItemTitle,
 } from "@/components/ui/item"
@@ -74,30 +74,71 @@ export default function Weatherbox() {
       </CardHeader>
 
       <CardContent className="w-full h-full">
-        <h1 className="mb-2">{info.name}</h1>
-        <div className="flex">
+        
+        <div className="grid grid-cols-3 grid-rows-2 space-x-2 space-y-2 p-1 gap-2">
           
-        <Item className="bg-zinc-800 w-fit flex justify-center items-center">
-          <ItemHeader className="text-center">temperature</ItemHeader>
+        <Item className="bg-zinc-800  col-span-1 justify-center items-center h-20">
+          {/* <ItemHeader className="text-center flex justify-center items-center">temperature</ItemHeader> */}
           <ItemMedia />
           <ItemContent>
-            <ItemTitle>{info.deg}</ItemTitle>
-            <ItemDescription>Item</ItemDescription>
+            <ItemTitle  className="text-center flex justify-center items-center w-full">city</ItemTitle>
+            <ItemDescription className="text-center flex justify-center items-center">{info.name}</ItemDescription>
           </ItemContent>
           <ItemActions />
-          <ItemFooter>Item Footer</ItemFooter>
+          {/* <ItemFooter>Item Footer</ItemFooter> */}
         </Item>
 
-          <Item>
-          <ItemHeader>Item Header</ItemHeader>
+        <Item className="bg-zinc-800  col-span-1 justify-center items-center h-20">
+          {/* <ItemHeader className="text-center flex justify-center items-center">temperature</ItemHeader> */}
           <ItemMedia />
           <ItemContent>
-            <ItemTitle>Item</ItemTitle>
-            <ItemDescription>Item</ItemDescription>
+            <ItemTitle  className="text-center flex justify-center items-center w-full" >Description</ItemTitle>
+            <ItemDescription className="text-center flex justify-center items-center">{info.description}</ItemDescription>
           </ItemContent>
           <ItemActions />
-          <ItemFooter>Item Footer</ItemFooter>
+          {/* <ItemFooter>Item Footer</ItemFooter> */}
         </Item>
+
+           <Item className="bg-zinc-800  col-span-1 justify-center items-center h-20">
+          {/* <ItemHeader className="text-center flex justify-center items-center">temperature</ItemHeader> */}
+          <ItemMedia />
+          <ItemContent>
+            <ItemTitle  className="text-center flex justify-center items-center w-full">temperature</ItemTitle>
+            <ItemDescription className="text-center flex justify-center items-center">{info.deg}</ItemDescription>
+          </ItemContent>
+          <ItemActions />
+          {/* <ItemFooter>Item Footer</ItemFooter> */}
+        </Item>
+
+
+           <Item className="bg-zinc-800  col-span-1 justify-center items-center h-20">
+          {/* <ItemHeader className="text-center flex justify-center items-center">temperature</ItemHeader> */}
+          <ItemMedia />
+          <ItemContent>
+            <ItemTitle  className="text-center flex justify-center items-center w-full">Max</ItemTitle>
+            <ItemDescription className="text-center flex justify-center items-center">{info.max}</ItemDescription>
+          </ItemContent>
+          <ItemActions />
+          {/* <ItemFooter>Item Footer</ItemFooter> */}
+        </Item>
+
+
+
+           <Item className="bg-zinc-800  col-span-1 justify-center items-center h-20">
+          {/* <ItemHeader className="text-center flex justify-center items-center">temperature</ItemHeader> */}
+          <ItemMedia />
+          <ItemContent>
+            <ItemTitle  className="text-center flex justify-center items-center w-full">Min</ItemTitle>
+            <ItemDescription className="text-center flex justify-center items-center">{info.min}</ItemDescription>
+          </ItemContent>
+          <ItemActions />
+          {/* <ItemFooter>Item Footer</ItemFooter> */}
+        </Item>
+
+
+      
+
+        
         </div>
       </CardContent>
 
@@ -114,7 +155,7 @@ export default function Weatherbox() {
 
             })}
           />
-          <Button variant="outline" aria-label="Search">
+          <Button variant="outline" aria-label="Search" onClick={backend}>
             <SearchIcon />
           </Button>
         </ButtonGroup>
